@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
 const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div
+      <motion.div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url("https://images.pexels.com/photos/162539/architecture-building-amsterdam-blue-sky-162539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+          transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0005})`,
         }}
+        initial={{ scale: 1 }}
+        animate={{ 
+          y: scrollY * 0.5,
+          scale: 1 + scrollY * 0.0005,
+        }}
+        transition={{ type: "spring", stiffness: 100, damping: 30 }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <motion.h1
