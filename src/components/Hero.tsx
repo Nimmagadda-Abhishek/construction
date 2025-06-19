@@ -26,19 +26,29 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={`image-${currentImageIndex}`}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url("${images[currentImageIndex]}")`,
           }}
-          initial={{ scale: 1.3, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
+          initial={{ 
+            scale: 1,
+            x: "100%"
+          }}
+          animate={{ 
+            scale: 1.1,
+            x: "0%"
+          }}
+          exit={{ 
+            scale: 1.1,
+            x: "-100%"
+          }}
           transition={{ 
-            duration: 1.5,
-            ease: "easeInOut"
+            duration: 0.8,
+            ease: "easeInOut",
+            scale: { duration: 4 }
           }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
