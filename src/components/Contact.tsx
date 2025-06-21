@@ -17,7 +17,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@premiummegastructures.com', 'projects@premiummegastructures.com']
+      details: ['info@udaymegastructuresllp.com', 'projects@udaymegastructuresllp.com']
     },
     {
       icon: Clock,
