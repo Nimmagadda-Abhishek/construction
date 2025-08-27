@@ -1,30 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'Our Location',
-      details: ['123 Construction Avenue', 'Metropolitan City, MC 12345']
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      details: ['+1 (555) 123-4567', '+1 (555) 987-6543']
-    },
-    {
-      icon: Mail,
-      title: 'Email Us',
-      details: ['info@udaymegastructuresllp.com', 'projects@udaymegastructuresllp.com']
-    },
-    {
-      icon: Clock,
-      title: 'Working Hours',
-      details: ['Mon - Fri: 8:00 AM - 6:00 PM', 'Sat: 9:00 AM - 4:00 PM']
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+    projectType: 'Commercial',
+    budget: ''
+  });
+
+  const [status, setStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: null
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus({ submitting: true, submitted: false, error: null });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.message);
+
+      setStatus({ submitting: false, submitted: true, error: null });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        projectType: 'Commercial',
+        budget: ''
+      });
+    } catch (error: any) {
+      setStatus({
+        submitting: false,
+        submitted: false,
+        error: error.message || 'Something went wrong!'
+      });
     }
-  ];
+  };
 
   return (
     <section className="py-20 bg-gray-50">
@@ -37,154 +73,189 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-4">
-            Get In Touch
+            Contact Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to discuss your next big project? Our team of experts is here to bring your vision to life.
+            Ready to start your project? Get in touch with us today and let's build something amazing together.
           </p>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-2xl font-bold text-blue-800 mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-start space-x-4"
-                  >
-                    <div className="bg-orange-500 p-3 rounded-lg">
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-blue-800 mb-1">{item.title}</h4>
-                      {item.details.map((detail, idx) => (
-                        <p key={idx} className="text-gray-600">{detail}</p>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <Phone className="w-8 h-8 text-orange-500 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Phone</h3>
+              <p className="text-gray-600">+1 (555) 123-4567</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <Mail className="w-8 h-8 text-orange-500 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Email</h3>
+              <p className="text-gray-600">info@construction.com</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-8 h-8 text-orange-500 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Address</h3>
+              <p className="text-gray-600">123 Construction Ave, City, State 12345</p>
+            </div>
+          </motion.div>
+
+          <motion.form
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            onSubmit={handleSubmit}
+            className="md:col-span-2 bg-white p-8 rounded-xl shadow-lg"
+          >
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
               </div>
 
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="phone">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="projectType">Project Type</label>
+                <select
+                  id="projectType"
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                >
+                  <option value="Commercial">Commercial</option>
+                  <option value="Infrastructure">Infrastructure</option>
+                  <option value="Industrial">Industrial</option>
+                  <option value="Residential">Residential</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="subject">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2" htmlFor="budget">Budget Range</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                >
+                  <option value="">Select Budget Range</option>
+                  <option value="Under $50K">Under $50K</option>
+                  <option value="$50K - $100K">$50K - $100K</option>
+                  <option value="$100K - $500K">$100K - $500K</option>
+                  <option value="$500K - $1M">$500K - $1M</option>
+                  <option value="Over $1M">Over $1M</option>
+                </select>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-gray-700 mb-2" htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                ></textarea>
+              </div>
+            </div>
+
+            {status.error && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="mt-8 p-6 bg-blue-800 rounded-lg text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg"
               >
-                <h4 className="text-xl font-bold mb-2">Ready to Start Your Project?</h4>
-                <p className="mb-4">Contact us today for a free consultation and discover how we can bring your vision to life.</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors"
-                >
-                  Schedule Consultation
-                </motion.button>
+                {status.error}
               </motion.div>
-            </motion.div>
+            )}
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-lg p-8"
+            {status.submitted && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-4 p-4 bg-green-100 text-green-700 rounded-lg"
+              >
+                Thank you for your message! We'll get back to you soon.
+              </motion.div>
+            )}
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={status.submitting}
+              className={`mt-6 w-full bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-orange-600 transition-colors ${status.submitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              <h3 className="text-2xl font-bold text-blue-800 mb-6">Send us a Message</h3>
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                      placeholder="John"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                    placeholder="+1 (555) 123-4567"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Project Type
-                  </label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all">
-                    <option>Select a project type</option>
-                    <option>Commercial Construction</option>
-                    <option>Infrastructure Development</option>
-                    <option>Industrial Projects</option>
-                    <option>Residential Development</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                    placeholder="Tell us about your project..."
-                  ></textarea>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
-                >
-                  <Send className="w-5 h-5" />
+              {status.submitting ? (
+                'Sending...'
+              ) : (
+                <>
                   Send Message
-                </motion.button>
-              </form>
-            </motion.div>
-          </div>
+                  <Send className="w-5 h-5" />
+                </>
+              )}
+            </motion.button>
+          </motion.form>
         </div>
       </div>
     </section>

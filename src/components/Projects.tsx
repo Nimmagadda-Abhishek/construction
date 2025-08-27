@@ -1,71 +1,99 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Calendar, MapPin } from 'lucide-react';
+import { Building2, Factory, Home, Warehouse, Map, Hammer, PaintBucket, Wrench } from 'lucide-react';
 
 const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const categories = ['All', 'Commercial', 'Infrastructure', 'Industrial', 'Residential'];
+  const categories = [
+    { id: 'all', name: 'All Projects' },
+    { id: 'commercial', name: 'Commercial', icon: Building2 },
+    { id: 'residential', name: 'Residential', icon: Home },
+    { id: 'industrial', name: 'Industrial', icon: Factory },
+    { id: 'infrastructure', name: 'Infrastructure', icon: Map },
+    { id: 'renovation', name: 'Renovation', icon: Hammer },
+    { id: 'interior', name: 'Interior', icon: PaintBucket },
+    { id: 'engineering', name: 'Engineering', icon: Wrench },
+    { id: 'storage', name: 'Storage', icon: Warehouse }
+  ];
 
   const projects = [
     {
       id: 1,
-      title: 'Skyline Corporate Tower',
-      category: 'Commercial',
-      location: 'New York, NY',
-      year: '2023',
-      image: 'https://images.pexels.com/photos/2159065/pexels-photo-2159065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'A 50-story mixed-use tower featuring state-of-the-art offices and retail spaces.'
+      title: 'Modern Office Complex',
+      category: 'commercial',
+      image: 'https://images.pexels.com/photos/1838640/pexels-photo-1838640.jpeg',
+      location: 'Downtown Business District',
+      year: 2023,
+      description: 'A state-of-the-art office complex featuring sustainable design and smart building technology.'
     },
     {
       id: 2,
-      title: 'Metro Bridge Complex',
-      category: 'Infrastructure',
-      location: 'San Francisco, CA',
-      year: '2022',
-      image: 'https://images.pexels.com/photos/1813470/pexels-photo-1813470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'Revolutionary bridge design connecting major urban centers with sustainable materials.'
+      title: 'Luxury Villa Development',
+      category: 'residential',
+      image: 'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg',
+      location: 'Suburban Heights',
+      year: 2023,
+      description: 'Premium residential villas with custom designs and high-end finishes.'
     },
     {
       id: 3,
-      title: 'Green Energy Plant',
-      category: 'Industrial',
-      location: 'Austin, TX',
-      year: '2023',
-      image: 'https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'Clean energy facility providing power to over 100,000 homes.'
+      title: 'Manufacturing Facility',
+      category: 'industrial',
+      image: 'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg',
+      location: 'Industrial Park',
+      year: 2022,
+      description: 'Large-scale manufacturing facility with advanced automation systems.'
     },
     {
       id: 4,
-      title: 'Luxury Residential Complex',
-      category: 'Residential',
-      location: 'Miami, FL',
-      year: '2023',
-      image: 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'Premium waterfront residential development with world-class amenities.'
+      title: 'Highway Extension',
+      category: 'infrastructure',
+      image: 'https://images.pexels.com/photos/681335/pexels-photo-681335.jpeg',
+      location: 'Metro Region',
+      year: 2023,
+      description: 'Major highway extension project improving regional connectivity.'
     },
     {
       id: 5,
-      title: 'Tech Innovation Hub',
-      category: 'Commercial',
-      location: 'Seattle, WA',
-      year: '2022',
-      image: 'https://images.pexels.com/photos/2157404/pexels-photo-2157404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'Cutting-edge technology campus designed for collaboration and innovation.'
+      title: 'Historic Building Renovation',
+      category: 'renovation',
+      image: 'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg',
+      location: 'City Center',
+      year: 2022,
+      description: 'Careful restoration of a historic building preserving its architectural heritage.'
     },
     {
       id: 6,
-      title: 'Highway Expansion Project',
-      category: 'Infrastructure',
-      location: 'Los Angeles, CA',
-      year: '2023',
-      image: 'https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      description: 'Major highway infrastructure upgrade improving traffic flow and safety.'
+      title: 'Corporate Interior Design',
+      category: 'interior',
+      image: 'https://images.pexels.com/photos/1743555/pexels-photo-1743555.jpeg',
+      location: 'Tech Park',
+      year: 2023,
+      description: 'Modern interior design for a leading tech company headquarters.'
+    },
+    {
+      id: 7,
+      title: 'Steel Structure Bridge',
+      category: 'engineering',
+      image: 'https://images.pexels.com/photos/2381463/pexels-photo-2381463.jpeg',
+      location: 'River District',
+      year: 2022,
+      description: 'Complex engineering project connecting two major districts.'
+    },
+    {
+      id: 8,
+      title: 'Cold Storage Facility',
+      category: 'storage',
+      image: 'https://images.pexels.com/photos/2760241/pexels-photo-2760241.jpeg',
+      location: 'Logistics Hub',
+      year: 2023,
+      description: 'Temperature-controlled storage facility for perishable goods.'
     }
   ];
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredProjects = selectedCategory === 'all'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   return (
@@ -81,85 +109,85 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-4">
             Our Projects
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Discover our portfolio of exceptional projects that showcase our commitment to excellence and innovation
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore our diverse portfolio of successful construction projects
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                  selectedCategory === category
-                    ? 'bg-orange-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-          >
-            {filteredProjects.map((project, index) => (
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${selectedCategory === category.id ? 'bg-blue-800 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category.icon && <category.icon className="w-4 h-4" />}
+              {category.name}
+            </motion.button>
+          ))}
+        </div>
+
+        <motion.div
+          layout
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+                layout
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+                className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center gap-2 text-sm mb-1">
-                      <MapPin className="w-4 h-4" />
-                      {project.location}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4" />
-                      {project.year}
-                    </div>
-                  </div>
-                  <motion.button
+                    className="w-full h-full object-cover"
                     whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/30 transition-colors"
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute bottom-4 left-4 text-white z-10"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.button>
+                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span>{project.location}</span>
+                      <span>•</span>
+                      <span>{project.year}</span>
+                    </div>
+                  </motion.div>
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-blue-800">{project.title}</h3>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">
-                      {project.category}
-                    </span>
-                  </div>
                   <p className="text-gray-600 leading-relaxed">{project.description}</p>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-4 text-orange-500 font-semibold hover:text-orange-600 transition-colors flex items-center gap-2"
+                  >
+                    View Details
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.button>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

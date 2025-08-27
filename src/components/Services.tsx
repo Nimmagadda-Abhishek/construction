@@ -1,44 +1,74 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Hammer, Zap, Shield, Cog, Truck } from 'lucide-react';
+import { Building2, Hammer, Factory, Warehouse, Map, Home, PaintBucket, Wrench, Building } from 'lucide-react';
 
 const Services = () => {
   const services = [
     {
       icon: Building2,
-      title: 'Commercial Construction',
-      description: 'State-of-the-art office buildings, shopping centers, and mixed-use developments that redefine urban landscapes.',
-      image: 'https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      title: 'Commercial Buildings',
+      description: 'State-of-the-art office complexes and shopping centers with modern amenities.',
+      image: 'https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg'
+    },
+    {
+      icon: Factory,
+      title: 'Pre-fabricated Buildings',
+      description: 'Quick-to-deploy, cost-effective building solutions for various purposes.',
+      image: 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg'
+    },
+    {
+      icon: Home,
+      title: 'Residential Villas',
+      description: 'Luxurious custom-designed villas with premium finishes and amenities.',
+      image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg'
+    },
+    {
+      icon: Factory,
+      title: 'Industrial Projects',
+      description: 'Large-scale industrial facilities and manufacturing units.',
+      image: 'https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg'
+    },
+    {
+      icon: Warehouse,
+      title: 'Cold Storages',
+      description: 'Temperature-controlled storage facilities for perishable goods.',
+      image: 'https://images.pexels.com/photos/2760241/pexels-photo-2760241.jpeg'
+    },
+    {
+      icon: Warehouse,
+      title: 'Godowns',
+      description: 'Spacious warehouses for efficient storage and logistics operations.',
+      image: 'https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg'
     },
     {
       icon: Hammer,
-      title: 'Infrastructure Development',
-      description: 'Roads, bridges, utilities, and public works that form the backbone of modern civilization.',
-      image: 'https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      title: 'Renovations',
+      description: 'Complete makeover and upgrading of existing structures.',
+      image: 'https://images.pexels.com/photos/1669754/pexels-photo-1669754.jpeg'
     },
     {
-      icon: Zap,
-      title: 'Industrial Projects',
-      description: 'Manufacturing facilities, power plants, and industrial complexes designed for maximum efficiency.',
-      image: 'https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: Map,
+      title: 'Roads and Buildings',
+      description: 'Infrastructure development including roads and public buildings.',
+      image: 'https://images.pexels.com/photos/681335/pexels-photo-681335.jpeg'
     },
     {
-      icon: Shield,
-      title: 'Safety & Compliance',
-      description: 'Rigorous safety protocols and regulatory compliance ensuring project success and worker protection.',
-      image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: PaintBucket,
+      title: 'Interior & Exterior Works',
+      description: 'Comprehensive interior design and exterior finishing services.',
+      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg'
     },
     {
-      icon: Cog,
-      title: 'Project Management',
-      description: 'End-to-end project management services ensuring timely delivery and budget adherence.',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: Wrench,
+      title: 'Welding & Engineering',
+      description: 'Specialized welding and engineering solutions for construction.',
+      image: 'https://images.pexels.com/photos/2381463/pexels-photo-2381463.jpeg'
     },
     {
-      icon: Truck,
-      title: 'Logistics & Supply',
-      description: 'Comprehensive supply chain management and logistics coordination for seamless project execution.',
-      image: 'https://images.pexels.com/photos/1106476/pexels-photo-1106476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: Building,
+      title: 'High-Rise Towers',
+      description: 'Towering skyscrapers with cutting-edge architecture and safety features.',
+      image: 'https://images.pexels.com/photos/273209/pexels-photo-273209.jpeg'
     }
   ];
 
@@ -56,7 +86,7 @@ const Services = () => {
             Our Services
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive construction and infrastructure solutions tailored to meet the demands of modern development
+            Comprehensive construction solutions tailored to meet your specific needs
           </p>
         </motion.div>
 
@@ -68,27 +98,41 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
             >
-              <div className="relative h-48 overflow-hidden">
-                <img
+              <div className="relative h-64 overflow-hidden">
+                <motion.img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500"
+                  whileHover={{ scale: 1.1 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <service.icon className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  className="absolute bottom-4 left-4 text-white z-10"
+                >
+                  <service.icon className="w-8 h-8 mb-2" />
+                  <h3 className="text-xl font-bold">{service.title}</h3>
+                </motion.div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-blue-800 mb-3">{service.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 text-orange-500 font-semibold hover:text-orange-600 transition-colors"
+                  className="mt-4 text-orange-500 font-semibold hover:text-orange-600 transition-colors flex items-center gap-2"
                 >
-                  Learn More →
+                  Learn More
+                  <motion.span
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    →
+                  </motion.span>
                 </motion.button>
               </div>
             </motion.div>
