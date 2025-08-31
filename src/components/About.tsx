@@ -80,6 +80,56 @@ const About = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Team Members Section */}
+          <motion.div 
+            className="mt-20 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl font-bold text-blue-800 mb-4">Meet Our Leadership</h3>
+            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">Our experienced leaders bring decades of combined expertise in construction and project management.</p>
+            
+            <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+              {/* Team Member 1 */}
+              <motion.div 
+                className="bg-white p-6 rounded-xl shadow-lg"
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-500">
+                  <img 
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
+                    alt="John Doe"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800">KVR RAO</h4>
+                <p className="text-orange-500 font-medium mb-2">DIRECTOR</p>
+                <p className="text-gray-600">25+ years of experience in construction management and large-scale project delivery.</p>
+              </motion.div>
+
+              {/* Team Member 2 */}
+              <motion.div 
+                className="bg-white p-6 rounded-xl shadow-lg"
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-500">
+                  <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
+                    alt="Jane Smith"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800">SUNEETHA</h4>
+                <p className="text-orange-500 font-medium mb-2">DIRECTOR</p>
+                <p className="text-gray-600">20+ years of experience in construction operations and process optimization.</p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

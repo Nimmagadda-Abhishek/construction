@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
@@ -11,69 +11,92 @@ const Hero = () => {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nextImageIndex, setNextImageIndex] = useState(1);
 
+  // Preload images
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % images.length;
-        console.log('Switching to image:', nextIndex, 'Total images:', images.length);
-        return nextIndex;
+    const preloadImages = () => {
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
       });
-    }, 5000); // Change image every 5 seconds
+      setIsLoading(false);
+    };
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+    preloadImages();
+  }, [images]);
+
+  // Handle image transitions
+  useEffect(() => {
+    if (isLoading) return;
+    
+    const timer = setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [currentImageIndex, isLoading, images.length]);
+
+  // Preload next image
+  useEffect(() => {
+    if (isLoading) return;
+    setNextImageIndex((currentImageIndex + 1) % images.length);
+  }, [currentImageIndex, images.length, isLoading]);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <AnimatePresence>
-        <motion.div
-          key={`image-${currentImageIndex}`}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url("${images[currentImageIndex]}")`,
-          }}
-          initial={{ 
-            scale: 1,
-            x: "100%"
-          }}
-          animate={{ 
-            scale: 1.1,
-            x: "0%"
-          }}
-          exit={{ 
-            scale: 1.1,
-            x: "-100%"
-          }}
-          transition={{ 
-            duration: 0.8,
-            ease: "easeInOut",
-            scale: { duration: 4 }
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        </motion.div>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* Preload next image */}
+      <div className="hidden">
+        <img src={images[nextImageIndex]} alt="" />
+      </div>
+      
+      <AnimatePresence mode="wait">
+        {!isLoading && (
+          <motion.div
+            key={`image-${currentImageIndex}`}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url("${images[currentImageIndex]}")`,
+            }}
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ 
+              opacity: 1,
+              scale: 1.05,
+              transition: { duration: 0.8, ease: [0.6, 0.05, 0.1, 0.99] }
+            }}
+            exit={{ 
+              opacity: 0,
+              scale: 1.1,
+              transition: { duration: 0.6, ease: [0.6, 0.05, 0.1, 0.99] }
+            }}
+          >
+            <motion.div 
+              className="absolute inset-0 bg-black bg-opacity-50"
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: 0.5,
+                transition: { duration: 0.4 }
+              }}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
-      {/* Debug Info */}
-      <div className="absolute top-4 left-4 text-white text-sm bg-black bg-opacity-50 p-2 rounded z-30">
-        Image: {currentImageIndex + 1} / {images.length}
+      {/* Logo and Debug Info */}
+      <div className="absolute top-4 left-4 z-30 flex items-center gap-4">
+        <img 
+          src="/src/assets/logo.jpeg" 
+          alt="Company Logo" 
+          className="h-12 w-auto rounded-full border-2 border-white shadow-lg"
+        />
+        <div className="text-white text-sm bg-black bg-opacity-50 p-2 rounded">
+          Image: {currentImageIndex + 1} / {images.length}
+        </div>
       </div>
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImageIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentImageIndex 
-                ? 'bg-orange-500 scale-125 shadow-lg' 
-                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-            }`}
-          />
-        ))}
-      </div>
+      
 
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <motion.h1
@@ -120,21 +143,6 @@ const Hero = () => {
           </motion.button>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-3 bg-white rounded-full mt-2"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };

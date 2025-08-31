@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Building2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+const logoUrl = new URL('../assets/logo.jpeg', import.meta.url).href;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,13 +41,21 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <motion.div
             onClick={scrollToTop}
-            className="flex items-center space-x-2 cursor-pointer"
+            className="cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
-            <Building2 className={`w-8 h-8 ${isScrolled ? 'text-blue-800' : 'text-white'}`} />
-            <span className={`text-xl font-bold ${isScrolled ? 'text-blue-800' : 'text-white'}`}>
-              udaymegastructuresllp
-            </span>
+            {!logoError ? (
+              <img
+                src={logoUrl}
+                alt="Uday Megastructures LLP"
+                onError={() => setLogoError(true)}
+                className="block h-10 w-10 rounded bg-white/90 p-1 object-contain shadow"
+              />
+            ) : (
+              <div className="block h-10 w-10 rounded bg-blue-800 text-white flex items-center justify-center text-xs font-bold">
+                U
+              </div>
+            )}
           </motion.div>
 
           {/* Desktop Navigation */}

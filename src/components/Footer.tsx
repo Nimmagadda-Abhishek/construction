@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import logo from '../assets/logo.jpeg';
 
 const Footer = () => {
   const socialLinks = [
@@ -32,8 +33,12 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center space-x-2 mb-4">
-              <Building2 className="w-8 h-8 text-orange-500" />
+            <div className="flex flex-col space-y-2 mb-4">
+              <img 
+                src={logo} 
+                alt="Uday Megastructures LLP" 
+                className="h-12 w-auto object-contain"
+              />
               <span className="text-xl font-bold">udaymegastructuresllp</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">

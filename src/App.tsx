@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CategoryPage from './components/CategoryPage';
 import About from './components/About';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -110,6 +111,7 @@ const App = () => {
             />
           </Routes>
         </AnimatePresence>
+        <Footer />
       </div>
     </Router>
   );

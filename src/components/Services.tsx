@@ -1,8 +1,40 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Hammer, Factory, Warehouse, Map, Home, PaintBucket, Wrench, Building } from 'lucide-react';
 
+const SkeletonLoader = () => (
+  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    {[...Array(6)].map((_, index) => (
+      <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="relative h-64 overflow-hidden">
+          <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+        </div>
+        <div className="p-6">
+          <div className="h-6 bg-gray-200 rounded-full w-3/4 mb-4 animate-pulse"></div>
+          <div className="space-y-2">
+            <div className="h-4 bg-gray-200 rounded-full"></div>
+            <div className="h-4 bg-gray-200 rounded-full w-5/6"></div>
+            <div className="h-4 bg-gray-200 rounded-full w-4/6"></div>
+          </div>
+          <div className="mt-6 h-4 bg-gray-200 rounded-full w-1/3"></div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const Services = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const services = [
     {
       icon: Building2,
@@ -90,8 +122,20 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((service, index) => (
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <SkeletonLoader />
+          ) : (
+            <motion.div
+              key="services"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full"
+            >
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -137,7 +181,10 @@ const Services = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
