@@ -197,11 +197,11 @@ const Contact = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 >
                   <option value="">Select Budget Range</option>
-                  <option value="Under $50K">Under $50K</option>
-                  <option value="$50K - $100K">$50K - $100K</option>
-                  <option value="$100K - $500K">$100K - $500K</option>
-                  <option value="$500K - $1M">$500K - $1M</option>
-                  <option value="Over $1M">Over $1M</option>
+                  <option value="Under ₹4,150,000">Under ₹4,150,000</option>
+                  <option value="₹4,150,000 - ₹8,300,000">₹4,150,000 - ₹8,300,000</option>
+                  <option value="₹8,300,000 - ₹41,500,000">₹8,300,000 - ₹41,500,000</option>
+                  <option value="₹41,500,000 - ₹83,000,000">₹41,500,000 - ₹83,000,000</option>
+                  <option value="Over ₹83,000,000">Over ₹83,000,000</option>
                 </select>
               </div>
 
