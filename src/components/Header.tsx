@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { navigationItems } from './navigationItems';
-const logoUrl = new URL('../assets/logo.jpeg', import.meta.url).href;
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ const Header = () => {
           >
             <div className="flex items-center space-x-3">
               <img
-                src={logoUrl}
+                src={logo}
                 alt="Uday Mega Structures LLP"
                 onError={() => setLogoError(true)}
                 className="h-10 w-10 rounded bg-white/90 p-1 object-contain shadow"
