@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   const socialLinks = [
@@ -12,7 +12,7 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    'About Us', 'Our Services', 'Projects', 'Careers', 'News', 'Contact'
+    'About Us', 'Our Services', 'Projects', 'Contact'
   ];
 
   const services = [
@@ -34,10 +34,10 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex flex-col space-y-2 mb-4">
-              <img 
-                src={logo} 
-                alt="Uday Megastructures LLP" 
-                className="h-12 w-auto object-contain"
+              <img
+                src={logo}
+                alt="Uday Megastructures LLP"
+                className="h-[100px] w-auto object-contain"
               />
               <span className="text-xl font-bold">udaymegastructuresllp</span>
             </div>

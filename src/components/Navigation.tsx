@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Building2, Factory, Home, Warehouse, Map, Hammer, PaintBucket, Wrench } from 'lucide-react';
+import logo from '../assets/logo.jpeg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +33,15 @@ const Navigation = () => {
     <nav className="fixed w-full bg-white shadow-lg z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <motion.a
-            href="/"
-            className="text-2xl font-bold text-blue-800"
+          <motion.div
+            onClick={() => window.location.href = '/'}
+            className="flex items-center space-x-3 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            UdayMegaStructureLLp
-          </motion.a>
+            <img src={logo} alt="Uday Mega Structures LLP" className="h-12 w-auto object-contain" />
+            <span className="text-2xl font-bold text-blue-800 hidden lg:block">Uday Mega Structures LLP</span>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

@@ -22,13 +22,18 @@ const About = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
-                Engineering Excellence Since 1998
+                About Uday Megha Structure
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                We are a leading construction and infrastructure development company, specializing in premium megastructures that define skylines and transform communities. Our commitment to innovation, sustainability, and quality has made us the preferred partner for ambitious projects worldwide.
+                Established in 2024, Uday Megha Structure is a forward-looking company built on a strong vision of innovation, quality, and trust. With a mission to create impactful ventures that add value to society, we are committed to excellence in everything we do.
+              </p>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                The company is led by Mrs. K. Suneetha, a seasoned entrepreneur with over 20 years of industry experience. Her leadership, expertise, and dedication to growth form the foundation of Uday Megha Structure. Guided by her vision, the company continues to expand into new opportunities with the same principles of integrity, quality, and customer satisfaction.
               </p>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                From towering skyscrapers to complex infrastructure networks, we bring vision to life through cutting-edge engineering and meticulous attention to detail. Our legacy is built on foundations of trust, integrity, and uncompromising quality.
+                At Uday Megha Structure, we believe in building more than just projects—we build trust, relationships, and a legacy for the future.
+                <br />
+                Uday Megha Structure – Strong Vision. Strong Future.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -47,7 +52,7 @@ const About = () => {
               className="relative"
             >
               <img
-                src="https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src="src\assets\logo.jpeg"
                 alt="Construction team"
                 className="rounded-lg shadow-2xl"
               />
