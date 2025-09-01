@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, Building, Target } from 'lucide-react';
 import logo from '../assets/logo.png';
+import constructionTeam from '../assets/logo.jpeg';
 
 const About = () => {
   const stats = [
@@ -56,7 +57,7 @@ const About = () => {
               className="relative"
             >
               <img
-                src="src\assets\logo.jpeg"
+                src={constructionTeam}
                 alt="Construction team"
                 className="rounded-lg shadow-2xl"
               />
