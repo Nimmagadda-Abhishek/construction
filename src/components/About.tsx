@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, Building, Target } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const About = () => {
   const stats = [
@@ -21,9 +22,12 @@ const About = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
-                About Uday Megha Structure
-              </h2>
+              <div className="flex items-center gap-4 mb-6">
+                <img src={logo} alt="Uday Mega Structures LLP" className="h-12 w-12 md:h-16 md:w-16 object-contain" />
+                <h2 className="text-4xl md:text-5xl font-bold text-blue-800">
+                  About Uday Megha Structure
+                </h2>
+              </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Established in 2024, Uday Megha Structure is a forward-looking company built on a strong vision of innovation, quality, and trust. With a mission to create impactful ventures that add value to society, we are committed to excellence in everything we do.
               </p>
@@ -104,13 +108,6 @@ const About = () => {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-500">
-                  <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
-                    alt="John Doe"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
                 <h4 className="text-xl font-bold text-gray-800">KVR RAO</h4>
                 <p className="text-orange-500 font-medium mb-2">DIRECTOR</p>
                 <p className="text-gray-600">25+ years of experience in construction management and large-scale project delivery.</p>
@@ -122,13 +119,6 @@ const About = () => {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-orange-500">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
-                    alt="Jane Smith"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
                 <h4 className="text-xl font-bold text-gray-800">SUNEETHA</h4>
                 <p className="text-orange-500 font-medium mb-2">DIRECTOR</p>
                 <p className="text-gray-600">20+ years of experience in construction operations and process optimization.</p>

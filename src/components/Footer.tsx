@@ -110,16 +110,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-orange-500" />
-                <span className="text-gray-300">123 Construction Avenue<br />Metropolitan City, MC 12345</span>
+                <MapPin className="w-6 h-6 text-orange-500" />
+                <span className="text-gray-300">402,4th floor,Flat No.1559&1760A, KPHB state, 9th Phase,<br />Hyderabad, Telangana 500085</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-orange-500" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">9494054102</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-orange-500" />
-                <span className="text-gray-300">info@premiummegastructures.com</span>
+                <Mail className="w-6 h-6 text-orange-500" />
+                <span className="text-gray-300">info@udaymegastructuresllp.com</span>
               </div>
             </div>
           </motion.div>

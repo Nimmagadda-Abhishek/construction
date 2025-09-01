@@ -91,7 +91,7 @@ const Contact = () => {
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
               <Phone className="w-8 h-8 text-orange-500 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Phone</h3>
-              <p className="text-gray-600">+1 (555) 123-4567</p>
+              <p className="text-gray-600">9494054102</p>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
@@ -103,7 +103,7 @@ const Contact = () => {
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
               <MapPin className="w-8 h-8 text-orange-500 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Address</h3>
-              <p className="text-gray-600">123 Construction Ave, City, State 12345</p>
+              <p className="text-gray-600">402,4th floor,Flat No.1559&1760A,Gokul Trade Center, KPHB state, 9th Phase, Venkata Ramana Colony, Hyderabad, Telangana 500085</p>
             </div>
           </motion.div>
 
