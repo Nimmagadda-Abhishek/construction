@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Youtube } from 'lucide-react';
 import logo from '../assets/footer.png';
 
 const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: '#' },
     { icon: Twitter, href: '#' },
-    { icon: Linkedin, href: '#' },
-    { icon: Instagram, href: '#' },
+    { icon: Instagram, href: 'https://www.instagram.com/udaymegastructuresllp/' },
+    { icon: Youtube, href: 'https://www.youtube.com/@UdaymegastructuresLLP' },
   ];
 
   const quickLinks = [
@@ -37,9 +37,8 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Uday Megastructures LLP"
-                className="h-[100px] w-auto object-contain"
+                className="h-[250px] w-auto object-contain"
               />
-              <span className="text-xl font-bold">udaymegastructuresllp</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Building the future through innovative engineering and exceptional craftsmanship. Your trusted partner for premium infrastructure solutions.

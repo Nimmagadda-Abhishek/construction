@@ -33,7 +33,7 @@ const Header = () => {
               <img
                 src={logo}
                 alt="Uday Megastructures LLP"
-                className="h-[50px] w-auto object-contain"
+                className="h-[100px] w-auto object-contain"
               />
             </div>
           </motion.div>
