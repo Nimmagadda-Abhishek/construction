@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import CategoryPage from './components/CategoryPage';
 import About from './components/About';
+import Success from './components/Success';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -106,6 +107,19 @@ const App = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <About />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/success"
+              element={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Success />
                 </motion.div>
               }
             />

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,6 +63,9 @@ const Contact = () => {
         error: error.message || 'Something went wrong!'
       });
     }
+
+    // Always redirect to success page regardless of API response
+    navigate('/success');
   };
 
   return (
