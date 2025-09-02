@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, Building, Target } from 'lucide-react';
-import logo from '../assets/logo.png';
 import constructionTeam from '../assets/logo.jpeg';
 
 const About = () => {
@@ -24,7 +23,6 @@ const About = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <img src={logo} alt="Uday Mega Structures LLP" className="h-12 w-12 md:h-16 md:w-16 object-contain" />
                 <h2 className="text-4xl md:text-5xl font-bold text-blue-800">
                   About Uday Megha Structure
                 </h2>

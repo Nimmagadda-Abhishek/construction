@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import Navigation from './components/Navigation';
+import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Projects from './components/Projects';
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-white">
-        <Navigation />
+        <Header />
         <AnimatePresence mode="wait">
           <Routes>
             <Route

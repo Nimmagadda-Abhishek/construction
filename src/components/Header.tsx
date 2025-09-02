@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { navigationItems } from './navigationItems';
@@ -6,17 +6,10 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [logoError, setLogoError] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Force logo refresh by adding timestamp
+
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -27,11 +20,9 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
-      }`}
+    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-lg`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="px-4 py-4">
         <div className="flex items-center justify-between">
           <motion.div
             onClick={scrollToTop}
@@ -41,13 +32,9 @@ const Header = () => {
             <div className="flex items-center space-x-3">
               <img
                 src={logo}
-                alt="Uday Mega Structures LLP"
-                onError={() => setLogoError(true)}
-                className="h-10 w-10 rounded bg-white/90 p-1 object-contain shadow"
+                alt="Uday Megastructures LLP"
+                className="h-[100px] w-auto object-contain"
               />
-              <span className={`font-bold text-lg hidden md:block ${isScrolled ? 'text-gray-700' : 'text-white'}`}>
-                Uday Mega Structures LLP
-              </span>
             </div>
           </motion.div>
 
@@ -61,7 +48,7 @@ const Header = () => {
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
-                    <span className={`font-medium transition-colors hover:text-orange-500 ${isScrolled ? 'text-gray-700' : 'text-white'}`}>
+                    <span className="font-medium transition-colors hover:text-orange-500 text-gray-700">
                       {item.name}
                     </span>
                     <ChevronDown className="w-4 h-4" />
@@ -92,7 +79,7 @@ const Header = () => {
                 ) : (
                   <motion.a
                     href={item.href}
-                    className={`font-medium transition-colors hover:text-orange-500 ${isScrolled ? 'text-gray-700' : 'text-white'}`}
+                    className="font-medium transition-colors hover:text-orange-500 text-gray-700"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -109,9 +96,9 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? 'text-blue-800' : 'text-white'}`} />
+              <X className="w-6 h-6 text-blue-800" />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? 'text-blue-800' : 'text-white'}`} />
+              <Menu className="w-6 h-6 text-blue-800" />
             )}
           </button>
         </div>
