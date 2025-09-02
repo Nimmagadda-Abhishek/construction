@@ -5,7 +5,7 @@ import logo from '../assets/footer.png';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: '#' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61580316743981' },
     { icon: Twitter, href: '#' },
     { icon: Instagram, href: 'https://www.instagram.com/udaymegastructuresllp/' },
     { icon: Youtube, href: 'https://www.youtube.com/@UdaymegastructuresLLP' },
@@ -48,6 +48,8 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-blue-800 p-2 rounded-lg hover:bg-orange-500 transition-colors"
@@ -133,6 +135,9 @@ const Footer = () => {
         >
           <p className="text-gray-300">
             © 2024 udaymegastructuresllp. All rights reserved. | Privacy Policy | Terms of Service
+          </p>
+          <p className="text-gray-400 text-sm mt-2">
+            Designed and developed by <a href="https://asiandigitalworld.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600">Asian Digital World</a>
           </p>
         </motion.div>
       </div>
