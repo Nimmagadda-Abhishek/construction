@@ -24,7 +24,7 @@ const About = () => {
             >
               <div className="flex items-center gap-4 mb-6">
                 <h2 className="text-4xl md:text-5xl font-bold text-blue-800">
-                  About Uday Megha Structure
+                  About Uday Mega Structure LLP
                 </h2>
               </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
